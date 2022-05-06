@@ -1,3 +1,9 @@
+from random import random
+
+from GameboardDrawer import GameboardDrawer
+from WinChecker import WinChecker
+
+
 class MatchController:
     # private Match match;
     # private Random randomizerForBotMoves = new Random();
@@ -20,44 +26,33 @@ class MatchController:
         if self.match.number_of_moves == (self.match.grid.number_of_columns * self.match.grid.number_of_rows):
             self.match.is_game_over = bool(True)
             self.someone_won()
-        return self.match.is_game_over;
+        return self.match.is_game_over
 
     def someone_won(self):
-        if (WinChecker.check_if_either_won(match.playerSymbol, match.grid)) {
-        match.winner = "player";
-        return true;
-        }
-        if (WinChecker.check_if_either_won(match.botSymbol, match.grid)) {
-        match.winner = "bot";
-        return true;
-        }
-        return false;
-        }
+        if WinChecker.check_if_either_won(self.match.player_symbol, self.match.grid):
+            self.match.winner = "player"
+            return bool(True)
+        if WinChecker.check_if_either_won(self.match.bot_symbol, self.match.grid):
+            self.match.winner = "bot"
+            return bool(True)
+        return bool(False)
 
     def next_move(self):
-        {
-        if (match.playersTurn) {
-        playerMakesNextMove();
-        } else {
-        botMakesNextMove();
-        }
-        match.numberOfMoves + +;
-        GameboardDrawer.drawGameboard(match.grid);
-        }
+        if self.match.players_turn:
+            self.player_makes_next_move(self)
+        else:
+            self.bot_makes_next_move(self)
+        self.match.number_of_moves += 1
+        GameboardDrawer.drawGameboard(self.match.grid);
 
     def bot_makes_next_move(self):
-        {
-        int
-        rowIndex = randomizerForBotMoves.nextInt(match.grid.numberOfRows);
-        int
-        columnIndex = randomizerForBotMoves.nextInt(match.grid.numberOfColumns);
-        if (match.grid.checkIfFieldIsEmpty(rowIndex, columnIndex)) {
-        match.grid.setFieldValue(rowIndex, columnIndex, match.botSymbol);
-        match.playersTurn = true;
-        } else {
-        botMakesNextMove();
-        }
-        }
+        row_index = random.randrange(self.match.grid.numberOfRows)
+        column_index = random.randrange(self.match.grid.numberOfColumns)
+        if self.match.grid.check_if_field_is_empty(row_index, column_index):
+            self.match.grid.setFieldValue(row_index, column_index, self.match.bot_symbol);
+            self.match.players_turn = bool(True)
+        else:
+            self.bot_makes_next_move()
 
     def player_makes_next_move(self):
         {
@@ -124,6 +119,6 @@ class MatchController:
         if (input.length() == 2) {
         int columnIndex = findColumnIndex(input);
         int rowIndex = findRowIndex(input);
-        return !(columnIndex < 0 | | rowIndex < 0 | | !match.grid.checkIfFieldIsEmpty(rowIndex, columnIndex));
+        return !(column_index < 0 | | row_index < 0 | | !match.grid.checkIfFieldIsEmpty(rowIndex, columnIndex));
         }
         return false;

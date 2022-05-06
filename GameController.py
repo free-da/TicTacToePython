@@ -1,20 +1,20 @@
+from GameboardDrawer import GameboardDrawer
+from Match import Match
+
+
 class GameController:
 
-    def __init(self):
-        self.gameIsOver = bool(False)
+    def __init__(self):
+        self.game_is_over = bool(False)
 
-    def runTicTacToe(self):
-        self.askPlayerWhichSymbol()
-        while (user_cant_get_enough()):
-            Match
-            match = new
-            Match(playerSymbol);
-            printInstructions();
-            GameboardDrawer.drawGameboard(match.grid);
-            MatchController
-            matchController = new
-            MatchController(match);
-            matchController.startMatch();
+    def run_tic_tac_toe(self):
+        self.ask_player_which_symbol()
+        while (self.user_cant_get_enough()):
+            match = Match(self.player_symbol)
+            self.print_instructions();
+            GameboardDrawer.draw_gameboard(match.grid)
+            matchController = MatchController(match);
+            matchController.start_match();
 
         else:
             print("Bye.")
@@ -45,7 +45,7 @@ userCantGetEnough();
 return false;
 }
 
-    def askPlayerWhichSymbol(self):
+    def ask_player_which_symbol(self):
 BufferedReader
 bufferedReader = new
 BufferedReader(new

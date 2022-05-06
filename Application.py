@@ -2,7 +2,7 @@ def main():
     GameController
     game = new
     GameController();
-    game.runTicTacToe();
+    game.run_tic_tac_toe();
 
 
 if __name__ == "__main__":

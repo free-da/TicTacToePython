@@ -43,7 +43,7 @@ class MatchController:
         else:
             self.bot_makes_next_move(self)
         self.match.number_of_moves += 1
-        GameboardDrawer.drawGameboard(self.match.grid);
+        GameboardDrawer.draw_gameboard(self.match.grid);
 
     def bot_makes_next_move(self):
         row_index = random.randrange(self.match.grid.numberOfRows)
@@ -55,70 +55,43 @@ class MatchController:
             self.bot_makes_next_move()
 
     def player_makes_next_move(self):
-        {
-        BufferedReader
-        bufferedReader = new
-        BufferedReader(new
-        InputStreamReader(System. in));
-        String
-        input;
-        try {
-        System.out.print(">_");
-        input = bufferedReader.readLine();
-        if (coordinateInputIsValid(input)) {
-        match.grid.setFieldValue(findRowIndex(input), findColumnIndex(input), match.playerSymbol);
-        } else {
-        System.out.println("Please, play by the rules. Try again.");
-        playerMakesNextMove();
-        }
-        } catch(IOException e) {
-        System.out.println("Error. Try again.");
-        playerMakesNextMove();
-        }
-        match.playersTurn = false;
-        }
+        print(">_")
+        user_input = input()
+        if self.coordinate_input_is_valid(user_input):
+            self.match.grid.set_field_value(self.find_row_index(self, user_input), self.find_column_index(self, user_input), self.match.player_symbol)
+        else:
+            print("Please, play by the rules. Try again.")
+            self.player_makes_next_move()
+        self.match.players_turn = bool(False)
 
     def announce_winner(self):
-        {
-        if (match.gameIsOver & & someoneWon()) {
-        if (match.winner.equals("player")) {
-        System.out.println("You won.");
-        } else if (match.winner.equals("bot")) {
-        System.out.println("You lost. The machine is superior.");
-        }
-        } else {
-        System.out.println("Tied. Everybody loses.");
-        }
+        if self.match.game_is_over and self.someone_won():
+            if self.match.winner == "player":
+                print("You won.")
+            elif self.match.winner == ("bot"):
+                print("You lost. The machine is superior.")
+            else:
+                print("Tied. Everybody loses.")
 
-        }
 
     def announce_end_of_game(self):
-    {
-    System.out.println("Game is over.");
-    }
+        print("Game is over.")
 
-    def find_column_index(self, input):
-        char
-        secondLetter = input.charAt(1);
-        String
-        coordinatesHelperColumns = "ABCDEFG";
-        coordinatesHelperColumns = coordinatesHelperColumns.substring(0, match.grid.numberOfColumns);
-        return coordinatesHelperColumns.indexOf(Character.toString(secondLetter).toUpperCase());
-        }
+    def find_column_index(self, user_input):
+        second_letter = user_input[1]
+        coordinates_helper_columns = "ABCDEFG"
+        coordinates_helper_columns = coordinates_helper_columns[0:self.match.grid.number_of_columns]
+        return coordinates_helper_columns.index(second_letter.upper())
 
-    def findRowIndex(self, input):
-        char
-        firstLetter = input.charAt(0);
-        String
-        coordinatesHelperRows = "123456";
-        coordinatesHelperRows = coordinatesHelperRows.substring(0, match.grid.numberOfRows);
-        return coordinatesHelperRows.indexOf(Character.toString(firstLetter).toUpperCase());
-        }
+    def find_row_index(self, user_input):
+        first_letter = user_input[0]
+        coordinates_helper_rows = "123456";
+        coordinates_helper_rows = coordinates_helper_rows[0:self.match.grid.number_of_rows]
+        return coordinates_helper_rows.index(first_letter.upper())
 
-    def coordinate_input_is_valid(self, input):
-        if (input.length() == 2) {
-        int columnIndex = findColumnIndex(input);
-        int rowIndex = findRowIndex(input);
-        return !(column_index < 0 | | row_index < 0 | | !match.grid.checkIfFieldIsEmpty(rowIndex, columnIndex));
-        }
-        return false;
+    def coordinate_input_is_valid(self, user_input):
+        if user_input.len() == 2:
+            column_index = self.find_column_index(user_input)
+            row_index = self.find_row_index(user_input)
+            return not (column_index < 0 or row_index < 0 or not self.match.grid.check_if_field_is_empty(row_index, column_index))
+        return bool(False)

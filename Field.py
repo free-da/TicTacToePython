@@ -1,12 +1,11 @@
-import Symbol
+from Symbol import Symbol
 
 
 class Field:
-    # private Symbol value;
 
-    def __init__(self, entry):
+    def __init__(self, entry=None):
         if self is not None and entry is None:
-            self.value = Symbol.EMPTY;
+            self.value = Symbol.EMPTY
         elif self is not None and entry is not None:
             self.value = entry
 

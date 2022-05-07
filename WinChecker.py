@@ -8,17 +8,18 @@ class WinChecker:
         if symbol == Symbol.X or symbol == Symbol.O:
 
             ###check for Rows
-            for row_index in grid.number_of_rows:
+            for row_index in range(grid.number_of_rows):
                 row_check_counter = WinChecker.number_of_checks_in_row(symbol, grid, row_index);
                 if (row_check_counter == 3):
                     return bool(True)
             ###check for columns
-            for column_index in grid.number_of_columns:
+            for column_index in range(grid.number_of_columns):
                 column_check_counter = WinChecker.number_of_checks_in_column(symbol, grid, column_index);
                 if column_check_counter == 3:
                     return bool(True)
             ###check for diagonal
-            WinChecker.check_for_diagonal_win(symbol, grid)
+            if WinChecker.check_for_diagonal_win(symbol, grid):
+                return bool(True)
             return bool(False)
 
     def check_for_diagonal_win(symbol, grid):
@@ -32,7 +33,7 @@ class WinChecker:
 
     def number_of_checks_in_column(symbol, grid, column_index):
         counter = 0
-        for row_index in grid.numberOfRows:
+        for row_index in range(grid.number_of_rows):
             if grid.get_field_value(row_index, column_index) == symbol:
                 counter += 1
         return counter
@@ -40,7 +41,7 @@ class WinChecker:
 
     def number_of_checks_in_row(symbol, grid, row_index):
         counter = 0
-        for column_index in grid.number_of_columns:
+        for column_index in range(grid.number_of_columns):
             if grid.get_field_value(row_index, column_index) == symbol:
                 counter += 1
         return counter

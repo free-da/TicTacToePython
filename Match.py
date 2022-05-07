@@ -17,5 +17,5 @@ class Match:
         self.bot_symbol = Symbol.O if self.player_symbol == Symbol.X else Symbol.X;
         self.players_turn = bool(True)
         self.game_is_over = bool(False)
-        self.numberOfMoves = 0
+        self.number_of_moves = 0
         self.winner = ""
